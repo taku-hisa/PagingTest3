@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val Adapter = wordDataAdapter(this)
+        val Adapter = wordDataAdapter()
 
         lifecycleScope.launch {
-            getStream().collectLatest {
+            viewModel.getStream().collectLatest {
                 Adapter.submitData(it)
             }
         }
@@ -49,15 +49,5 @@ class MainActivity : AppCompatActivity() {
             val word = Word(0, wordText)
             viewModel.insertWord(word)
         }
-    }
-
-    private fun getStream(): Flow<PagingData<Word>> {
-
-        return Pager(
-            config = PagingConfig(pageSize = 10),
-                initialKey = 0
-        ) {
-            viewModel.getItem
-        }.flow
     }
 }

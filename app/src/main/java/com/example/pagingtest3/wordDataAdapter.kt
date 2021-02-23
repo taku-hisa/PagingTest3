@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pagingtest3.db.Word
 
 
-class wordDataAdapter(private val context: Context) : PagingDataAdapter<Word, wordDataAdapter.wordViewHolder>(CALLBACK) {
+class wordDataAdapter() : PagingDataAdapter<Word, wordDataAdapter.wordViewHolder>(CALLBACK) {
 
     class wordViewHolder(wordView:View): RecyclerView.ViewHolder(wordView) {
         val wordView: TextView = itemView.findViewById(android.R.id.text1)
